@@ -47,6 +47,9 @@
             //if the user is logged in, show database table and errors
             if(isset($_SESSION['logged-in'])){
 
+                echo("<p><a href='add.php'>Add New Entry</a><p>");
+                echo("<p><a href='logout.php'>Logout</a></p>");
+
                 if ( isset($_SESSION['error']) ) {
                     echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
                     unset($_SESSION['error']);
@@ -67,14 +70,6 @@
                 echo("<p><a href='login.php'>Please log in</a></p>");
             }
             
-
-        ?>
-
-        <?php
-            if(isset($_SESSION['logged-in'])){
-                echo("<p><a href='add.php'>Add New Entry</a><p>");
-                echo("<p><a href='logout.php'>Logout</a></p>");
-            }
 
         ?>
     </div>
