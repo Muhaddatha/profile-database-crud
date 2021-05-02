@@ -41,6 +41,7 @@
 
             $stmt = $pdo->query("SELECT profile_id, user_id, first_name, last_name, headline, summary FROM Profile Where profile_id=".$_GET["profile_id"]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo('<h2>Profile details for:<em> '.$row['first_name'].' '.$row['last_name'].'</em></h2>');
             echo('<ul>');
             echo('<li>Profile ID: ' . $row['profile_id'] . '</li>');
             echo('<li>User ID: ' . $row['user_id'] . '</li>');
