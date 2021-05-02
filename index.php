@@ -38,7 +38,7 @@
 
             if(isset($_SESSION['logged-in']) && !$usersTableEmpty){
                 echo('<td>');
-                echo('<a href="edit.php?profile_id='.$row['profile_id'].'">Edit</a> / ');
+                echo('<a href="edit.php?profile_id='.$row['profile_id'].'">Edit</a>');
                 echo('<a href="delete.php?profile_id='.$row['profile_id'].'">Delete</a>');
                 echo("</td></tr>\n");
             }
