@@ -47,11 +47,7 @@
         header('Location: index.php');
         return;
     }
-    // else{
-    //     //$_SESSION['error'] = 'All fields are required';
-    //     // header('Location: add.php');
-    //     // return;
-    // }
+    
     
 ?>
 
