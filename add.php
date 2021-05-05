@@ -8,18 +8,18 @@
     }
     if(!isset($_SESSION['user_id'])){
         die('Parameter is missing.');
-    }
+    } 
 
     
     if(isset($_POST['submit'])){
-        if(!isset($_POST['firstName']) || !isset($_POST['lastName']) || !isset($_POST['email']) || !isset($_POST['headline']) || !isset($_POST['summary'])){
+        if(!isset($_POST['first_name']) || strlen($_POST['first_name']) == 0 || !isset($_POST['last_name']) || strlen($_POST['last_name']) == 0 || !isset($_POST['email']) || strlen($_POST['email']) == 0|| !isset($_POST['headline']) || strlen($_POST['headline']) == 0 || !isset($_POST['summary']) || strlen($_POST['summary']) == 0){
             $_SESSION['error'] = 'All fields are required';
             unset($_POST['submit']);
             header('Location: add.php');
             return;
         }
 
-        if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['email']) && isset($_POST['headline']) && isset($_POST['summary'])){
+        if(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['headline']) && isset($_POST['summary'])){
             if(strpos($_POST['email'], '@') === FALSE){
                 // $failure = "Email must have an at-sign (@)";
                 $_SESSION['error'] = "Email must have an at-sign (@)";
@@ -30,14 +30,14 @@
             $stmt = $pdo->prepare('INSERT INTO PROFILE (user_id, first_name, last_name, email, headline, summary) VALUES (:ui, :fn, :ln, :em, :hl, :sm)');
                 $stmt->execute(array(
                     ':ui' => htmlentities($_SESSION['user_id']),
-                    ':fn' => htmlentities($_POST['firstName']),
-                    ':ln' => htmlentities($_POST['lastName']),
+                    ':fn' => htmlentities($_POST['first_name']),
+                    ':ln' => htmlentities($_POST['last_name']),
                     ':em' => htmlentities($_POST['email']),
                     ':hl' => htmlentities($_POST['headline']),
                     ':sm' => htmlentities($_POST['summary'])
                 ));
     
-            $_SESSION['success'] = "Record inserted";
+            $_SESSION['success'] = "Profile added";
             header("Location: index.php");
             return;
         }
@@ -89,11 +89,11 @@
     <form method="post">
         <p>First Name: 
             <br>
-            <input type="text" name="firstName">
+            <input type="text" name="first_name">
         </p>
         <p>Last Name: 
             <br>
-            <input type="text" name="lastName">
+            <input type="text" name="last_name">
         </p>
         <p>Email: 
             <br>

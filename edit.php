@@ -23,8 +23,8 @@
 
             $stmt->execute(array(
                     // ':ui' => htmlentities($_SESSION['user_id']),
-                    ':fn' => htmlentities($_POST['firstName']),
-                    ':ln' => htmlentities($_POST['lastName']),
+                    ':fn' => htmlentities($_POST['first_name']),
+                    ':ln' => htmlentities($_POST['last_name']),
                     ':em' => htmlentities($_POST['email']),
                     ':hl' => htmlentities($_POST['headline']),
                     ':sm' => htmlentities($_POST['summary'])
@@ -83,10 +83,10 @@
                 // $row = $stmt->fetch(PDO::FETCH_ASSOC);
             ?>
             <p>First name: 
-            <input type="text" name="firstName" size="60" value="<?php echo($row['first_name']) ?>" />
+            <input type="text" name="first_name" size="60" value="<?php echo($row['first_name']) ?>" />
             </p>
             <p>Last name: 
-            <input type="text" name="lastName" size="60" value="<?php echo($row['last_name']) ?>" />
+            <input type="text" name="last_name" size="60" value="<?php echo($row['last_name']) ?>" />
             </p>
             <p>Email: 
             <input type="text" name="email" size="30" value="<?php echo($row['email']) ?>" />
