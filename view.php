@@ -39,7 +39,7 @@
 
 
 
-            $stmt = $pdo->query("SELECT profile_id, user_id, first_name, last_name, headline, summary FROM Profile Where profile_id=".$_GET["profile_id"]);
+            $stmt = $pdo->query("SELECT profile_id, user_id, first_name, last_name, email, headline, summary FROM Profile Where profile_id=".$_GET["profile_id"]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             echo('<h2>Profile details for:<em> '.$row['first_name'].' '.$row['last_name'].'</em></h2>');
             echo('<ul>');
@@ -47,6 +47,7 @@
             echo('<li>User ID: ' . $row['user_id'] . '</li>');
             echo('<li>First name: ' . $row['first_name'] . '</li>');
             echo('<li>Last name: ' . $row['last_name'] . '</li>');
+            echo('<li>Email: ' . $row['email'] . '</li>');
             echo('<li>Headline: ' . $row['headline'] . '</li>');
             echo('<li>Summary: ' . $row['summary'] . '</li>');
             // echo('<table> <tr>'.'<td>'.$row['profile_id'].'</td> <td>'.$row['user_id'].'</td> <td>'.$row['first_name'].'</td> <td>'.$row['last_name'].'</td> <td>'.$row['headline'].'</td> <td>'.$row['summary'].'</tr> </table>');
