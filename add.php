@@ -59,7 +59,7 @@
             ));
 
             $profile_id = $pdo->lastInsertId();
-
+            $rank = 1;
             for($i = 1; $i <= 9; $i++){
                 if(!isset($_POST['year'.$i])) continue;
                 if(!isset($_POST['desc'.$i])) continue;
