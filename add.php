@@ -19,6 +19,27 @@
             return;
         }
 
+        // validate position(s)
+        for($i = 1; $i <= 9; $i++){
+            if(!isset($_POST['year'.$i])) continue;
+            if(!isset($_POST['desc'.$i])) continue;
+            $year = $_POST['year'.$i];
+            $desc = $_POST['desc'.$i];
+            if(strlen($year) == 0 || strlen($desc) == 0){
+                echo "Year and/or description are empty.";
+                $_SESSION['error'] = 'All fields are required';
+                header('Location: add.php');
+                return;
+            }
+
+            if(!is_numeric($year)){
+                echo "year (". $year.") is not numeric";
+                $_SESSION['error'] = 'Position year must be numeric';
+                header('Location: add.php');
+                return;
+            }
+        }
+
         if(isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['headline']) && isset($_POST['summary'])){
             if(strpos($_POST['email'], '@') === FALSE){
                 // $failure = "Email must have an at-sign (@)";
@@ -57,7 +78,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhaddatha Abdulghani</title>
-    <link rel="stylesheet" href="starter-temlpate.css">
+    <!-- <link rel="stylesheet" href="starter-temlpate.css"> -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <?php require_once "style/bootstrap.php"; ?>
 
@@ -67,7 +88,7 @@
     
     <?php
     
-        //if the user is logged in, show database table and errors
+        // if the user is logged in, show database table and errors
         if(isset($_SESSION['logged-in'])){
 
             if ( isset($_SESSION['error']) ) {
@@ -107,12 +128,42 @@
         <br>
             <textarea name="summary" rows="8" cols="80" spellcheck="false"></textarea>
         </p>
+        <p>Position: <input type="submit" id="addPos" value="+">
+            <div id="position_fields">
+            </div>
+        </p>
         <p>
             <input type="submit" value="Add" name="submit">
             <input type="submit" value="Cancel" name="cancel">
         </p>
     </form>
 
+        <script type="text/javascript">
+            countPos = 0;
+            console.log('Hello');
+            $(document).ready(function(){
+                window.console && console.log('Document ready called');
+                $('#addPos').click( function(event) {
+                    event.preventDefault();
+                    if(countPos >= 9){
+                        alert('Maximum of nine position entries exceeded');
+                        return;
+                    }
+
+                    countPos++;
+                    window.console && console.log(`Adding position ${countPos}`);
+                    $('#position_fields').append(
+                        '<div id="position'+countPos+'"> \
+                        <p>Year: <input type="text" name="year'+countPos+'" value="" /> \
+                        <input type="button" value="-" \
+                        onclick="$(\'#position'+countPos+'\').remove();return false;"></p> \
+                        <textarea name="desc'+countPos+'" rows="8" cols="80"></textarea> \
+                        \</div>'
+                    );
+
+                });
+            });
+            </script>
     
 </body>
 </html>
