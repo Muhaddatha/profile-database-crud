@@ -49,15 +49,29 @@
             }
     
             $stmt = $pdo->prepare('INSERT INTO PROFILE (user_id, first_name, last_name, email, headline, summary) VALUES (:ui, :fn, :ln, :em, :hl, :sm)');
-                $stmt->execute(array(
-                    ':ui' => htmlentities($_SESSION['user_id']),
-                    ':fn' => htmlentities($_POST['first_name']),
-                    ':ln' => htmlentities($_POST['last_name']),
-                    ':em' => htmlentities($_POST['email']),
-                    ':hl' => htmlentities($_POST['headline']),
-                    ':sm' => htmlentities($_POST['summary'])
-                ));
+            $stmt->execute(array(
+                ':ui' => htmlentities($_SESSION['user_id']),
+                ':fn' => htmlentities($_POST['first_name']),
+                ':ln' => htmlentities($_POST['last_name']),
+                ':em' => htmlentities($_POST['email']),
+                ':hl' => htmlentities($_POST['headline']),
+                ':sm' => htmlentities($_POST['summary'])
+            ));
+
+            $profile_id = $pdo->lastInsertId();
+
+            $stmt = $pdo->prepare('INSERT INTO Position (profile_id, rank, year, description) VALUES ( :pid, :rank, :year, :desc)');
+
+            $stmt->execute(array(
+            ':pid' => $profile_id,
+            ':rank' => $rank,
+            ':year' => $year,
+            ':desc' => $desc)
+            );
+
+            $rank++;
     
+
             $_SESSION['success'] = "Profile added";
             header("Location: index.php");
             return;
