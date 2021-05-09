@@ -68,19 +68,15 @@
                 if(strlen($year) != 0 || strlen($desc) != 0){
                     $stmt = $pdo->prepare('INSERT INTO Position (profile_id, rank, year, description) VALUES ( :pid, :rank, :year, :desc)');
                     $stmt->execute(array(
-                        ':pid' => $profile_id,
-                        ':rank' => $rank,
-                        ':year' => $year,
-                        ':desc' => $desc)
+                        ':pid' => htmlentities($profile_id),
+                        ':rank' => htmlentities($rank),
+                        ':year' => htmlentities($year),
+                        ':desc' => htmlentities($desc))
                     );
                 }
                 $rank++;
             }
             
-
-            
-    
-
             $_SESSION['success'] = "Profile added";
             header("Location: index.php");
             return;
