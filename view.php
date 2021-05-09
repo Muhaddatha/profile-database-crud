@@ -59,6 +59,7 @@
                 if($printPosition){
                     echo('<p>Position</p>');
                     echo('<ul>');
+                    $printPosition = false;
                 }
                 echo('<li>'.$row['year'].': '.$row['description'].'</li>');
             }
