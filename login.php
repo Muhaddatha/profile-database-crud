@@ -1,6 +1,7 @@
 <?php 
     session_start();
     require_once "../../pdo.php";
+    include 'head.php';
 
     if ( isset($_POST['cancel'] ) ) {
         // Redirect the browser to game.php
@@ -41,16 +42,6 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhaddatha Abdulghani</title>
-    <?php require_once "style/bootstrap.php"?>
-    <link rel="stylesheet" href="style/style.css">
-    <script> src="scripts/script.js"</script> 
-</head>
 <body>
     <div class="container">
 

@@ -1,18 +1,9 @@
 <?php 
     session_start();
     require_once "../../pdo.php";
+    include 'head.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhaddatha Abdulghani</title>
-    <?php require_once "style/bootstrap.php"?>
-    <link rel="stylesheet" href="style/style.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-</head>
 <body>
     <div class="container">
         <h2>Welcome to the Resume Registry</h2>
